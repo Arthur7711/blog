@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
@@ -21,7 +21,11 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function ButtonAppBar() {
+  const [open, setOpen] = useState(false);
   const classes = useStyles();
+  const handleOpen = () => {
+    setOpen(!open);
+  };
 
   return (
     <div className={classes.root}>
@@ -32,11 +36,16 @@ export default function ButtonAppBar() {
             className={classes.menuButton}
             color="inherit"
             aria-label="menu"
+            onClick={handleOpen}
           >
             <MenuIcon />
           </IconButton>
-          {<NestedList />} 
-          
+          {open && (
+            <div>
+              <NestedList />
+            </div>
+          )}
+
           <Button color="inherit">
             <SimpleDialogDemo />
           </Button>
