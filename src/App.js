@@ -1,11 +1,13 @@
 import "./App.css";
-import ButtonAppBar from './components/Header'
+import Card from "./components/Card";
+import ButtonAppBar from "./components/Header";
 
 
 function App() {
   return (
     <div>
       <ButtonAppBar />
+      <Card />
       working
     </div>
   );

@@ -40,7 +40,7 @@ function SimpleDialog(props) {
       aria-labelledby="simple-dialog-title"
       open={open}
     >
-      <DialogTitle id="simple-dialog-title">Set backup account</DialogTitle>
+      <DialogTitle id="simple-dialog-title">Select your account</DialogTitle>
       <List>
         {emails.map((email) => (
           <ListItem
