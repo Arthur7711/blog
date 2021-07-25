@@ -11,12 +11,18 @@ import { Link } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   root: {
+    display: "flex",
+    justifyContent: "center",
     width: "100%",
     maxWidth: 360,
     backgroundColor: "#3f51b5",
   },
   nested: {
     paddingLeft: theme.spacing(4),
+  },
+  item: {
+    display: "flex",
+    justifyContent: "center",
   },
 }));
 
@@ -34,8 +40,8 @@ export default function NestedList() {
       aria-labelledby="nested-list-subheader"
       className={classes.root}
     >
-      <ListItem button>
-        <Link to="/">
+      <ListItem button >
+        <Link to="/" className={classes.item}>
           <ListItemIcon>
             <HomeIcon />
           </ListItemIcon>
@@ -43,15 +49,15 @@ export default function NestedList() {
         </Link>
       </ListItem>
       <ListItem button>
-        <Link to="/call-list">
+        <Link to="/call-list" className={classes.item}>
           <ListItemIcon>
             <AssignmentIcon />
           </ListItemIcon>
-          <ListItemText primary="Call list" />
+          <ListItemText primary="List" />
         </Link>
       </ListItem>
       <ListItem button>
-        <Link to="/notes">
+        <Link to="/notes" className={classes.item}>
           <ListItemIcon>
             <ChatIcon />
           </ListItemIcon>

@@ -32,7 +32,7 @@ export default function ButtonAppBar() {
   return (
     <div className={classes.root}>
       <AppBar position="static">
-        <Toolbar>
+        <Toolbar className='flex justify-between'>
           <IconButton
             edge="start"
             className={classes.menuButton}

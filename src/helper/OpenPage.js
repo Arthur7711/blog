@@ -95,7 +95,7 @@ export default function SimpleDialogDemo() {
 
   return (
     <div>
-      <Typography variant="subtitle1">Selected: {selectedValue}</Typography>
+      <Typography variant="subtitle1">Welcome: {selectedValue}</Typography>
       <br />
       <Button variant="outlined" color="inherit" onClick={handleClickOpen}>
         Login
