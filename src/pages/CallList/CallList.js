@@ -1,10 +1,11 @@
-import React from 'react'
-import TransferList from '../../components/List'
+import React from "react";
+import ListMain from "../../components/ListMain";
 
 export default function CallList() {
-    return (
-        <div>
-            <TransferList />
-        </div>
-    )
+  return (
+    <div>
+      
+      <ListMain />
+    </div>
+  );
 }
