@@ -4,22 +4,31 @@ import { useState, useEffect } from "react";
 
 export default function ListMain() {
   const [value, setValue] = useState("");
+  const [inp, setInp] = useState("");
   const [data, setData] = useState([]);
-  const [inp, setInp] = useState([]);
+  const [res, setRes] = useState([]);
+
   const handleChange = (e) => {
     setValue(e.target.value);
   };
+
   const handleAdd = () => {
-    setData(value);
+    setData([...data, { valPart: value, inpPart: inp }]);
     setValue("");
     setInp("");
   };
+
   const handleChangeInp = (e) => {
     setInp(e.target.value);
   };
-  //   useEffect(() => {
-  //     handleAdd()
-  //   }, [])
+  useEffect(() => {
+    localStorage.setItem("arrData", JSON.stringify(data));
+  }, [data]);
+
+  useEffect(() => {
+    setRes([...res, JSON.parse(localStorage.getItem("arrData")) || null]);
+  }, []);
+
   return (
     <div className="m-2 ">
       <label>
@@ -41,7 +50,12 @@ export default function ListMain() {
         />
       </label>
       <Button onClick={handleAdd}>Add</Button>
-      {data && data.map((m) => <p>{m}</p>)}
+      {res &&
+        res.map((m, i) => (
+          <p key={i}>
+            {m.valPart} {m.inpPart}
+          </p>
+        ))}
     </div>
   );
 }
