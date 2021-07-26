@@ -1,33 +1,30 @@
 import { Button } from "@material-ui/core";
 import React from "react";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 export default function ListMain() {
   const [value, setValue] = useState("");
   const [inp, setInp] = useState("");
-  const [data, setData] = useState([]);
-  const [res, setRes] = useState([]);
+
+  if (!localStorage.arrData) {
+    localStorage.arrData = JSON.stringify([]);
+  }
 
   const handleChange = (e) => {
     setValue(e.target.value);
   };
 
-  const handleAdd = () => {
-    setData([...data, { valPart: value, inpPart: inp }]);
-    setValue("");
-    setInp("");
-  };
-
   const handleChangeInp = (e) => {
     setInp(e.target.value);
   };
-  useEffect(() => {
-    localStorage.setItem("arrData", JSON.stringify(data));
-  }, [data]);
 
-  useEffect(() => {
-    setRes([...res, JSON.parse(localStorage.getItem("arrData")) || null]);
-  }, []);
+  const handleAdd = () => {
+    const oldData = [...JSON.parse(localStorage.arrData)];
+    const newData = { valPart: value, inpPart: inp };
+    localStorage.arrData = JSON.stringify([...oldData, newData]);
+    setValue("");
+    setInp("");
+  };
 
   return (
     <div className="m-2 ">
@@ -50,12 +47,16 @@ export default function ListMain() {
         />
       </label>
       <Button onClick={handleAdd}>Add</Button>
-      {res &&
-        res.map((m, i) => (
-          <p key={i}>
-            {m.valPart} {m.inpPart}
-          </p>
-        ))}
+      <div className="m-40">
+        {JSON.parse(localStorage.arrData) &&
+          JSON.parse(localStorage.arrData).map((m, i) => (
+            <div className="border-2 ">
+              <b key={i}>{m.valPart}</b>
+              <br />
+              <p>{m.inpPart}</p>
+            </div>
+          ))}
+      </div>
     </div>
   );
 }
