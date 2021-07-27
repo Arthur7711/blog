@@ -47,13 +47,12 @@ export default function ListMain() {
         />
       </label>
       <Button onClick={handleAdd}>Add</Button>
-      <div className="m-40">
+      <div className="pl-96 pr-96 pt-16">
         {JSON.parse(localStorage.arrData) &&
           JSON.parse(localStorage.arrData).map((m, i) => (
-            <div className="border-2 ">
-              <b key={i}>{m.valPart}</b>
-              <br />
-              <p>{m.inpPart}</p>
+            <div className="border-2 border-blue-400 rounded-md mb-10 ml-24 mr-24 mt-2 p-4">
+              <b className='flex justify-center mt-2 mb-6' key={i}>{m.valPart}</b>
+              <p  className='flex justify-center'>{m.inpPart}</p>
             </div>
           ))}
       </div>
