@@ -1,6 +1,7 @@
-import { Button } from "@material-ui/core";
+import { Button, IconButton } from "@material-ui/core";
 import React from "react";
 import { useState } from "react";
+import DeleteForeverIcon from "@material-ui/icons/DeleteForever";
 
 export default function ListMain() {
   const [value, setValue] = useState("");
@@ -24,6 +25,13 @@ export default function ListMain() {
     localStorage.arrData = JSON.stringify([...oldData, newData]);
     setValue("");
     setInp("");
+  };
+
+  const handleDelete = (id) => {
+    const data = JSON.parse(localStorage.getItem("arrData"));
+    const newData = data.filter((item) => item.inpPart !== id);
+    localStorage.setItem("arrData", JSON.stringify(newData));
+    setValue(newData);
   };
 
   return (
@@ -51,8 +59,13 @@ export default function ListMain() {
         {JSON.parse(localStorage.arrData) &&
           JSON.parse(localStorage.arrData).map((m, i) => (
             <div className="border-2 border-blue-400 rounded-md mb-10 ml-24 mr-24 mt-2 p-4">
-              <b className='flex justify-center mt-2 mb-6' key={i}>{m.valPart}</b>
-              <p  className='flex justify-center'>{m.inpPart}</p>
+              <b className="flex justify-center mt-2 mb-6" key={i}>
+                {m.valPart}
+              </b>
+              <p className="flex justify-center">{m.inpPart}</p>
+              <IconButton onClick={() => handleDelete(m.inpPart)}>
+                <DeleteForeverIcon color="error" />
+              </IconButton>
             </div>
           ))}
       </div>
