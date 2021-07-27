@@ -27,17 +27,20 @@ export default function LoginPage() {
     }
   };
   return (
-    <div >
-      <div>
-        <Input placeholder="email" onChange={handleEmail} value={email} />
-      </div>
-      <div>
-        <Input placeholder="password" onChange={handlePass} value={pass} />
-      </div>
-      <div>
-        <Button onClick={register} color="primary">
-          Register
-        </Button>
+    <div className=" flex justify-center align-center mt-40">
+      <div className="border-2 rounded-md p-10">
+        <h1 className="flex justify-center mt-4  text-3xl">Registration</h1>
+        <div className='mt-8'>
+          <Input placeholder="email" onChange={handleEmail} value={email} />
+        </div>
+        <div className='mt-4'>
+          <Input placeholder="password" onChange={handlePass} value={pass} />
+        </div>
+        <div className='mt-4'>
+          <Button onClick={register} color="primary">
+            Register
+          </Button>
+        </div>
       </div>
     </div>
   );
