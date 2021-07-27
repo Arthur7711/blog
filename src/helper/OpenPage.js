@@ -13,6 +13,7 @@ import PersonIcon from "@material-ui/icons/Person";
 import AddIcon from "@material-ui/icons/Add";
 import Typography from "@material-ui/core/Typography";
 import { blue } from "@material-ui/core/colors";
+import { Link } from "react-router-dom";
 
 const emails = ["username@gmail.com", "user02@gmail.com"];
 const useStyles = makeStyles({
@@ -56,19 +57,20 @@ function SimpleDialog(props) {
             <ListItemText primary={email} />
           </ListItem>
         ))}
-
-        <ListItem
-          autoFocus
-          button
-          onClick={() => handleListItemClick("addAccount")}
-        >
-          <ListItemAvatar>
-            <Avatar>
-              <AddIcon />
-            </Avatar>
-          </ListItemAvatar>
-          <ListItemText primary="Add account" />
-        </ListItem>
+        <Link to="/register">
+          <ListItem
+            autoFocus
+            button
+            onClick={() => handleListItemClick("addAccount")}
+          >
+            <ListItemAvatar>
+              <Avatar>
+                <AddIcon />
+              </Avatar>
+            </ListItemAvatar>
+            <ListItemText primary="Add account" />
+          </ListItem>
+        </Link>
       </List>
     </Dialog>
   );
