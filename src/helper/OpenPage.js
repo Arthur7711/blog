@@ -15,7 +15,7 @@ import Typography from "@material-ui/core/Typography";
 import { blue } from "@material-ui/core/colors";
 import { Link } from "react-router-dom";
 
-const emails = ["username@gmail.com", "user02@gmail.com"];
+export const emails = ["username@gmail.com", "user02@gmail.com"];
 const useStyles = makeStyles({
   avatar: {
     backgroundColor: blue[100],

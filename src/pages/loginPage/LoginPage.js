@@ -1,7 +1,6 @@
 import { Button, Input } from "@material-ui/core";
 import React, { useState } from "react";
-// import reg from "../../imgs/regis.jpg";
-// style={{ backgroundImage: `url(${reg})`,width:'100%', height:'100vh',backgroundRepeat:'no-repeat',}}
+import { emails } from "../../helper/OpenPage";
 
 export default function LoginPage() {
   const [email, setEmail] = useState("");
@@ -11,9 +10,11 @@ export default function LoginPage() {
   const handleEmail = (e) => {
     setEmail(e.target.value);
   };
+
   const handlePass = (e) => {
     setPass(e.target.value);
   };
+
   const register = () => {
     if (
       /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(
@@ -24,7 +25,11 @@ export default function LoginPage() {
     } else if (pass.length < 6) {
       setIsVal("Password must be longer than 6 syboles");
     } else {
-      localStorage.setItem("login", JSON.stringify([{ mail: email, password: pass }]));
+      localStorage.setItem(
+        "login",
+        JSON.stringify([{ mail: email, password: pass }])
+      );
+      emails.push(JSON.parse(localStorage.getItem("login")[0].email));
       setIsVal("");
     }
   };
