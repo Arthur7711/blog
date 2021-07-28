@@ -11,9 +11,9 @@ function App() {
       <ButtonAppBar />
       <Switch>
         <Route exact path="/" component={Home} />
-        <Route path='/call-list' component={CallList} />
-        <Route path='/notes' component={Notes} />
-        <Route path='/register' component={loginPage} />
+        <Route path="/call-list" component={CallList} />
+        <Route path="/notes" component={Notes} />
+        <Route path="/register" component={loginPage} />
       </Switch>
     </div>
   );

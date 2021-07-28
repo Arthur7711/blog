@@ -28,19 +28,13 @@ const useStyles = makeStyles((theme) => ({
 
 export default function NestedList() {
   const classes = useStyles();
-  // const [open, setOpen] = React.useState(true);
-
-  // const handleClick = () => {
-  //   setOpen(!open);
-  // };
-
   return (
     <List
       component="nav"
       aria-labelledby="nested-list-subheader"
       className={classes.root}
     >
-      <ListItem button >
+      <ListItem button>
         <Link to="/" className={classes.item}>
           <ListItemIcon>
             <HomeIcon />
@@ -63,18 +57,7 @@ export default function NestedList() {
           </ListItemIcon>
           <ListItemText primary="Notes" />
         </Link>
-        {/* {open ? <ExpandLess /> : <ExpandMore />} */}
       </ListItem>
-      {/* <Collapse in={open} timeout="auto" unmountOnExit>
-        <List component="div" disablePadding>
-          <ListItem button className={classes.nested}>
-            <ListItemIcon>
-              <StarBorder />
-            </ListItemIcon>
-            <ListItemText primary="Starred" />
-          </ListItem>
-        </List>
-      </Collapse> */}
     </List>
   );
 }
