@@ -1,6 +1,6 @@
 import { Button, Input } from "@material-ui/core";
 import React, { useState } from "react";
-import { emails } from "../../helper/OpenPage";
+// import { emails } from "../../helper/OpenPage";
 
 export default function LoginPage() {
   const [email, setEmail] = useState("");
@@ -29,7 +29,8 @@ export default function LoginPage() {
         "login",
         JSON.stringify([{ mail: email, password: pass }])
       );
-      emails.push(JSON.parse(localStorage.getItem("login")[0].email));
+      const arr=localStorage.getItem("emailsState")
+      arr(...'emailsState',JSON.parse(localStorage.setItem("login")[0].email));
       setIsVal("");
     }
   };

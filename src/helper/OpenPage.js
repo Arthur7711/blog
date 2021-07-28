@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
@@ -15,7 +15,6 @@ import Typography from "@material-ui/core/Typography";
 import { blue } from "@material-ui/core/colors";
 import { Link } from "react-router-dom";
 
-export const emails = ["username@gmail.com", "user02@gmail.com"];
 const useStyles = makeStyles({
   avatar: {
     backgroundColor: blue[100],
@@ -24,12 +23,15 @@ const useStyles = makeStyles({
 });
 
 function SimpleDialog(props) {
+  // const [emails, setEmails] = useState();
+
   const classes = useStyles();
   const { onClose, selectedValue, open } = props;
 
   const handleClose = () => {
     onClose(selectedValue);
   };
+  localStorage.setItem("emailsState", []);
 
   const handleListItemClick = (value) => {
     onClose(value);
@@ -43,20 +45,21 @@ function SimpleDialog(props) {
     >
       <DialogTitle id="simple-dialog-title">Select your account</DialogTitle>
       <List>
-        {emails.map((email) => (
-          <ListItem
-            button
-            onClick={() => handleListItemClick(email)}
-            key={email}
-          >
-            <ListItemAvatar>
-              <Avatar className={classes.avatar}>
-                <PersonIcon />
-              </Avatar>
-            </ListItemAvatar>
-            <ListItemText primary={email} />
-          </ListItem>
-        ))}
+        {localStorage.getItem("emailsState") &&
+          localStorage.getItem("emailsState").map((email) => (
+            <ListItem
+              button
+              onClick={() => handleListItemClick(email)}
+              key={email}
+            >
+              <ListItemAvatar>
+                <Avatar className={classes.avatar}>
+                  <PersonIcon />
+                </Avatar>
+              </ListItemAvatar>
+              <ListItemText primary={email} />
+            </ListItem>
+          ))}
         <Link to="/register">
           <ListItem
             autoFocus
@@ -84,7 +87,7 @@ SimpleDialog.propTypes = {
 
 export default function SimpleDialogDemo() {
   const [open, setOpen] = React.useState(false);
-  const [selectedValue, setSelectedValue] = React.useState(emails[1]);
+  const [selectedValue, setSelectedValue] = React.useState();
 
   const handleClickOpen = () => {
     setOpen(true);
