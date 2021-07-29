@@ -29,8 +29,10 @@ export default function LoginPage() {
         "login",
         JSON.stringify([{ mail: email, password: pass }])
       );
-      const arr=localStorage.getItem("emailsState")
-      arr(...'emailsState',JSON.parse(localStorage.setItem("login")[0].email));
+
+      // JSON.parse(localStorage.getItem("emailsState")).push(
+      //   JSON.parse(localStorage.setItem("login")).map((m) => m.mail)
+      // );
       setIsVal("");
     }
   };

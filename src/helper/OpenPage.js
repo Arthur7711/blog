@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
@@ -23,7 +23,6 @@ const useStyles = makeStyles({
 });
 
 function SimpleDialog(props) {
-  // const [emails, setEmails] = useState();
 
   const classes = useStyles();
   const { onClose, selectedValue, open } = props;
@@ -31,7 +30,7 @@ function SimpleDialog(props) {
   const handleClose = () => {
     onClose(selectedValue);
   };
-  localStorage.setItem("emailsState", []);
+  // localStorage.setItem("login", []);
 
   const handleListItemClick = (value) => {
     onClose(value);
@@ -45,8 +44,8 @@ function SimpleDialog(props) {
     >
       <DialogTitle id="simple-dialog-title">Select your account</DialogTitle>
       <List>
-        {localStorage.getItem("emailsState") &&
-          localStorage.getItem("emailsState").map((email) => (
+        {localStorage.getItem("login") &&
+          JSON.parse(localStorage.getItem("login")).map((email) => (
             <ListItem
               button
               onClick={() => handleListItemClick(email)}
@@ -57,7 +56,7 @@ function SimpleDialog(props) {
                   <PersonIcon />
                 </Avatar>
               </ListItemAvatar>
-              <ListItemText primary={email} />
+              <ListItemText primary={email.mail} />
             </ListItem>
           ))}
         <Link to="/register">
@@ -87,7 +86,7 @@ SimpleDialog.propTypes = {
 
 export default function SimpleDialogDemo() {
   const [open, setOpen] = React.useState(false);
-  const [selectedValue, setSelectedValue] = React.useState();
+  const [selectedValue, setSelectedValue] = React.useState(null);
 
   const handleClickOpen = () => {
     setOpen(true);
