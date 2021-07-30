@@ -23,17 +23,15 @@ const useStyles = makeStyles({
 });
 
 function SimpleDialog(props) {
-
   const classes = useStyles();
   const { onClose, selectedValue, open } = props;
 
   const handleClose = () => {
     onClose(selectedValue);
   };
-  // localStorage.setItem("login", []);
 
   const handleListItemClick = (value) => {
-    onClose(value);
+    onClose(value.mail);
   };
 
   return (
@@ -44,6 +42,7 @@ function SimpleDialog(props) {
     >
       <DialogTitle id="simple-dialog-title">Select your account</DialogTitle>
       <List>
+        
         {localStorage.getItem("login") &&
           JSON.parse(localStorage.getItem("login")).map((email) => (
             <ListItem
