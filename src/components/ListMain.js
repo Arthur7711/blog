@@ -64,7 +64,9 @@ export default function ListMain() {
               </b>
               <p className="flex justify-center">{m.inpPart}</p>
               <IconButton onClick={() => handleDelete(m.inpPart)}>
-                <DeleteForeverIcon color="error" />
+                {localStorage.getItem("login") && (
+                  <DeleteForeverIcon color="error" />
+                )}
               </IconButton>
             </div>
           ))}

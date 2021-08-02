@@ -42,22 +42,21 @@ function SimpleDialog(props) {
     >
       <DialogTitle id="simple-dialog-title">Select your account</DialogTitle>
       <List>
-        
         {localStorage.getItem("login") &&
-          JSON.parse(localStorage.getItem("login")).map((email) => (
+          
             <ListItem
               button
-              onClick={() => handleListItemClick(email)}
-              key={email}
+              onClick={() => handleListItemClick(JSON.parse(localStorage.getItem("login")))}
+              // key={email}
             >
               <ListItemAvatar>
                 <Avatar className={classes.avatar}>
                   <PersonIcon />
                 </Avatar>
               </ListItemAvatar>
-              <ListItemText primary={email.mail} />
+              <ListItemText primary={JSON.parse(localStorage.getItem("login")).email} />
             </ListItem>
-          ))}
+          }
         <Link to="/register">
           <ListItem
             autoFocus
@@ -96,13 +95,23 @@ export default function SimpleDialogDemo() {
     setSelectedValue(value);
   };
 
+  const logOut = () => {
+    localStorage.removeItem("login");
+  };
+
   return (
     <div>
       <Typography variant="subtitle1">Welcome: {selectedValue}</Typography>
       <br />
-      <Button variant="outlined" color="inherit" onClick={handleClickOpen}>
-        Login
-      </Button>
+      {localStorage.getItem("login") ? (
+        <Button variant="outlined" color="inherit" onClick={logOut}>
+          LogOut
+        </Button>
+      ) : (
+        <Button variant="outlined" color="inherit" onClick={handleClickOpen}>
+          Login
+        </Button>
+      )}
       <SimpleDialog
         selectedValue={selectedValue}
         open={open}

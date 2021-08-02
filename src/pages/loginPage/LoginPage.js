@@ -27,7 +27,7 @@ export default function LoginPage() {
     } else {
       localStorage.setItem(
         "login",
-        JSON.stringify([{ mail: email, password: pass }])
+        JSON.stringify({ mail: email, password: pass })
       );
       setIsVal("");
     }
